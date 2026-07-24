@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>腾讯工卡设计 · Tencent Badge</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 左侧控制面板 -->
+    <aside class="panel">
+      <header class="panel__head">
+        <div class="brand">
+          <span class="brand__logo">Tencent</span>
+          <span class="brand__zh">腾讯</span>
+        </div>
+        <p class="panel__sub">工卡展示设计器</p>
+      </header>
+
+      <div class="field">
+        <label for="enName">英文名 / English Name</label>
+        <input id="enName" type="text" value="Yanhengsun" maxlength="20" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="zhName">中文名 / Chinese Name</label>
+        <input id="zhName" type="text" value="孙彦恒" maxlength="8" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label>证件照 / ID Photo</label>
+        <div class="uploader" id="uploader">
+          <input id="photoInput" type="file" accept="image/*" hidden />
+          <div class="uploader__inner">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+              <path fill="currentColor" d="M19 5h-2.17l-1.24-1.35A2 2 0 0 0 14.12 3H9.88a2 2 0 0 0-1.47.65L7.17 5H5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm-7 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9Z"/>
+            </svg>
+            <span>点击或拖拽上传证件照</span>
+            <small>建议使用竖版一寸/二寸白底照</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="field field--row">
+        <label class="switch">
+          <input id="adjustPhoto" type="checkbox" />
+          <span>照片微调</span>
+        </label>
+        <div class="adjust" id="adjustCtl" hidden>
+          <label>缩放<input id="photoScale" type="range" min="30" max="220" value="100" /></label>
+          <label>上下<input id="photoY" type="range" min="-40" max="40" value="0" /></label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="flipBtn" class="btn btn--ghost">翻面查看</button>
+        <button id="downloadBtn" class="btn btn--solid">下载正面 PNG</button>
+      </div>
+
+      <p class="hint">提示：点击卡片同样可以翻面。</p>
+    </aside>
+
+    <!-- 右侧卡片舞台 -->
+    <main class="stage">
+      <div class="scene">
+        <div class="card" id="card">
+          <!-- 正面：证件照面 -->
+          <section class="card__face card__front" id="cardFront">
+            <div class="photo" id="photoBox">
+              <img id="photoImg" alt="证件照" />
+              <div class="photo__placeholder" id="photoPlaceholder">
+                <svg viewBox="0 0 24 24" width="46" height="46" aria-hidden="true">
+                  <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/>
+                </svg>
+                <span>请上传证件照</span>
+              </div>
+            </div>
+            <div class="info">
+              <div class="info__en" id="outEn">Yanhengsun</div>
+              <div class="info__line"></div>
+              <div class="info__zh" id="outZh">孙彦恒</div>
+              <div class="info__brand">
+                <img class="info__logo" id="brandLogo" src="assets/logo-white.png" alt="Tencent 腾讯" />
+              </div>
+            </div>
+          </section>
+
+          <!-- 反面：动物园插画面 -->
+          <section class="card__face card__back" id="cardBack">
+            <div class="zoo" aria-label="腾讯动物园">
+              <img class="zoo__img" src="assets/card-back.jpg" alt="腾讯动物园插画" />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="stage__tabs">
+        <button class="tab is-active" data-side="front">正面 · 证件照</button>
+        <button class="tab" data-side="back">反面 · 动物园</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
